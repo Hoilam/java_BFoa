@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+  <class table="tb_dep" name="com.bf.po.dep.Department">
+    <id name="dep_id">
+      <generator class="native"/>
+    </id>
+    <many-to-one name="parent" column="pid"></many-to-one>
+    <set name="child" lazy="false" inverse="true">
+      <key column="pid"></key>
+      <one-to-many class="com.bf.po.dep.Department"/>
+    </set>
+    <property name="dep_sn"/>
+    <property name="dep_name"/>
+    <property name="dep_desc"/>
+    <property name="flag"/>
+  </class>
+</hibernate-mapping>
