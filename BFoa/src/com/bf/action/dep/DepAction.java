@@ -7,8 +7,10 @@ import java.util.Map;
 
 import javax.annotation.Resource;
 
+import org.apache.struts2.ServletActionContext;
 import org.apache.struts2.interceptor.RequestAware;
 
+import com.bf.common.PageView;
 import com.bf.po.dep.Department;
 import com.bf.service.dep.DepService;
 import com.bf.service.dep.DepServiceFinder;
@@ -57,10 +59,24 @@ public class DepAction implements RequestAware {
 		return "deleteDep";
 	}
 	
+	//分页显示信息
+	public String findByPage(){
+		int pageNo = 0;
+		String pageNo_str = ServletActionContext.getRequest().getParameter("pager.offset");
+		if (pageNo_str != null) {
+			pageNo = Integer.parseInt(pageNo_str);
+		}
+		int pageSize = 5;
+		PageView<Department> pv =null;
+		
+		if (type != null && !type.equals("")) {
+			pv = dfr.findByPage(Department.class, "from Department d where d.dep_name = ?", type, pageNo, pageSize);
+		}
+		request.put("pv", pv);
+		return "findByPage";
+		
+	}
 
-	
-	
-	
 	public List<Department> getDeps() {
 		return deps;
 	}

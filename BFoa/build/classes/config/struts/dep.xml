@@ -10,6 +10,7 @@
             <result name="showAddDep">/web/page/dep/addDepartment.jsp</result>
             <result name="addDep">/web/page/common/close.html</result>
             <result name="deleteDep">/web/page/common/close.html</result>
+        	<result name="findByPage">/web/page/dep/findByPage.jsp</result>
         </action>
 </package>
 </struts>
