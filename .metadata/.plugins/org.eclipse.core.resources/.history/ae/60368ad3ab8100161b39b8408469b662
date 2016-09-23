@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+ "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+ 
+ <hibernate-mapping>
+     <class table="tb_emp" name="com.bf.po.emp.Employee">
+		<id name="emp_id">
+		    <generator class="native"/>
+		</id>         
+         
+		<property name="emp_name"/>
+		<property name="emp_sex"/>
+		<property name="emp_address"/>
+		<property name="emp_phone"/>
+		<property name="emp_job"/>
+		<property name="emp_img"/>
+		<many-to-one name="dep" column="dep_id"></many-to-one>
+         
+         
+     </class>
+ </hibernate-mapping>
