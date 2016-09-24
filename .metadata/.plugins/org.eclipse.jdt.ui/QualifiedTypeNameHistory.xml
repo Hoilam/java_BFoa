@@ -4,4 +4,5 @@
 <fullyQualifiedTypeName name="java.lang.Integer"/>
 <fullyQualifiedTypeName name="com.bf.common.PageView"/>
 <fullyQualifiedTypeName name="com.bf.po.dep.Department"/>
+<fullyQualifiedTypeName name="java.io.Serializable"/>
 </qualifiedTypeNameHistroy>

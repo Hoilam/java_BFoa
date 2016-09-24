@@ -1,0 +1,5 @@
+package com.bf.service.emp;
+
+public interface EmpService {
+
+}

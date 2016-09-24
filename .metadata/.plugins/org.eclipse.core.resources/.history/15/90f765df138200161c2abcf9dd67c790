@@ -1,0 +1,8 @@
+package com.bf.serviceimpl.emp;
+
+import com.bf.base.AbstactDao;
+import com.bf.service.emp.EmpService;
+
+public class EmpServiceImpl extends AbstactDao implements EmpService{
+
+}

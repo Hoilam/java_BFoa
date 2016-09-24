@@ -71,7 +71,10 @@ public class DepAction implements RequestAware {
 		
 		if (type != null && !type.equals("")) {
 			pv = dfr.findByPage(Department.class, "from Department d where d.dep_name = ?", type, pageNo, pageSize);
+		}else {
+			pv=dfr.findByPage(Department.class, "from Department d", pageNo, pageSize);
 		}
+		
 		request.put("pv", pv);
 		return "findByPage";
 		

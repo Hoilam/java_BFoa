@@ -1,0 +1,19 @@
+<%@ page language="java" import="java.util.*"  pageEncoding="UTF-8"%>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" 
+"http://www.w3.org/TR/html4/loose.dtd">
+<%
+String path = request.getContextPath();
+String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
+%>
+<%@taglib uri="/struts-tags" prefix="s"%>
+<html>
+<head>
+	<base href="<%=basePath%>">
+	<title>My JSP 'employeeManage.jsp staring page</title>
+	<meta http-equiv="Content-Type" content="utf-8">
+	<meta http-equiv="pragma" content="no-cache">
+</head>
+<body>
+
+</body>
+</html>

@@ -1,10 +1,10 @@
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
 <%@page import="com.bf.po.dep.Department"%>
-
 <%
 String path = request.getContextPath();
 String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
 %>
+
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
   <head>
@@ -70,7 +70,28 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					<script type="text/javascript">
 					    d = new dTree('d');
 					    d.add(0,-1,'北风部门');
-					  
+					    <%
+					      List<Department> deps = (List<Department>)request.getAttribute("depAll");
+					      int depId = 0;
+					      for(Department dep:deps) {
+					        if(dep.getParent()==null) {
+					          depId = dep.getDep_id();
+					           %>
+					           d.add(<%=dep.getDep_id()%>,0,'<%=dep.getDep_name()%>',"javascript:void(showDep('"+<%=dep.getDep_id()%>+"','"+'<%=dep.getDep_name()%>'+"','"+'<%=dep.getDep_sn()%>'+"','"+'无上级部门'+"','"+'<%=dep.getDep_desc()%>'+"'))",'dep');
+					           <%
+					        }
+					        if(dep.getChild().size()!=0) {
+					         for(Department depChild:dep.getChild()) {
+					        	 if(depChild.getFlag()==1) {
+					           %>
+					           d.add(<%=depChild.getDep_id()%>,<%=depId%>,'<%=depChild.getDep_name()%>',"javascript:void(showDep('"+<%=depChild.getDep_id()%>+"','"+'<%=depChild.getDep_name()%>'+"','"+'<%=depChild.getDep_sn()%>'+"','"+'<%=depChild.getParent().getDep_name()%>'+"','"+'<%=depChild.getDep_desc()%>'+"'))",'dep');
+					           <%
+					        	 }
+					        	
+					         }
+					        }
+					      }
+					    %>
 					    document.write(d);
 					</script>
 				</div>
@@ -102,19 +123,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 							<div class="button" onmouseover="buttonHover(this,'web/')" onmouseout="buttonNormal(this,'web/')" style="float:left">
 									修改
 							</div>
-							<c:choose>
-							  
-							     <div class="button" onmouseover="buttonHover(this,'web/')" onmouseout="buttonNormal(this,'web/')" style="float:left" onclick="showAddDep()">
+							<div class="button" onmouseover="buttonHover(this,'web/')" onmouseout="buttonNormal(this,'web/')" style="float:left" onclick="showAddDep()">
 									添加
-							    </div>
-							    
-							    <c:otherwise>
-							       <div class="button" onmouseover="buttonHover(this,'web/')" onmouseout="buttonNormal(this,'web/')" style="float:left" onclick="javascript:void(alert('你没有该权限'))">
-									添加
-							      </div>
-							    </c:otherwise>
-							</c:choose>
-							
+							</div>
 							<div class="button" onmouseover="buttonHover(this,'web/')" onmouseout="buttonNormal(this,'web/')" style="float:left" onclick="deleteDep()">
 									删除
 							</div>
@@ -134,19 +145,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						</tr>
 						<tr>
 							<td align="center">查询条件:<input type="text" name="type"/>
-							<c:choose>
-							  
-							     <div class="button" onmouseover="buttonHover(this,'web/')" onmouseout="buttonNormal(this,'web/')" style="float:right" onclick="findByPage()">
+							<div class="button" onmouseover="buttonHover(this,'web/')" onmouseout="buttonNormal(this,'web/')" style="float:right" onclick="findByPage()">
 									查询
-							     </div>
-						
-							   <c:otherwise>
-							   <div class="button" onmouseover="buttonHover(this,'web/')" onmouseout="buttonNormal(this,'web/')" style="float:right" onclick="javascript:void(alert('你没有该权限'))">
-									查询
-							   </div>
-							   </c:otherwise>
-							</c:choose>
-							
+							</div>
 							</td>
 						</tr>
 					</table>
