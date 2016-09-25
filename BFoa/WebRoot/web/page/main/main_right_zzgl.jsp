@@ -52,10 +52,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					<div class="iconButton" style="position:absolute;left:80px; top:100px">
 					 <div class="iconImage" 
 						 style="background-image:url(web/imgs/icos/zzgl.jpg);" 
-						 onclick="openWindow('bfdep/dep.action', 600, 500,'dep')">
+						 onclick="openWindow('bfdep/dep_showTree.action', 600, 500,'dep')">
 					 </div>
 					 <div style="text-align:center; line-height:20px" 
-					 	 onclick="openWindow('bfdep/dep.action', 600, 500,'dep')">部门管理</div>
+					 	 onclick="openWindow('bfdep/dep_showTree.action', 600, 500,'dep')">部门管理</div>
 					</div>
 					
 					<!-- 员工管理 -->

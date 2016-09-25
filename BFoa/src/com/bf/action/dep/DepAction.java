@@ -1,11 +1,15 @@
 package com.bf.action.dep;
 
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import org.apache.struts2.ServletActionContext;
 import org.apache.struts2.interceptor.RequestAware;
@@ -34,7 +38,7 @@ public class DepAction implements RequestAware {
 	private String type;
 	
 	// 显示树
-	public String execute() {
+	public String showTree(){
 		deps = dfr
 				.findAll(Department.class, "from Department d where d.flag=1");
 		request.put("depAll", deps);
@@ -79,6 +83,38 @@ public class DepAction implements RequestAware {
 		return "findByPage";
 		
 	}
+	
+	//得到对应的子部门的信息
+	public String execute() throws IOException{
+		HttpServletRequest request = ServletActionContext.getRequest();
+		HttpServletResponse response = ServletActionContext.getResponse();
+		//通过pid取到对应的值
+		int pid = 0;
+		String pid_str = request.getParameter("pid");
+		if(pid_str != null){
+			pid = Integer.parseInt(pid_str);
+		}
+		//清缓存
+		response.setHeader("Pragma", "no-cache");
+		response.setHeader("Cache-Control", "no-cache");
+		response.setCharacterEncoding("UTF-8");
+		response.setCharacterEncoding("utf-8");
+		response.setContentType("text/xml;charset=utf-8");
+		
+		//组装xml
+		List<Department> subDeps = dfr.findAll(Department.class, "from Department d where d.parent.dep_id="+pid);
+		PrintWriter out = response.getWriter();
+		out.println("<subDeps>");
+		for(Department dep:subDeps){
+			out.println("<subDeps>");
+			out.println("<subDep-name>"+dep.getDep_name()+"</subDep-name>");
+			out.println("</subDeps>");
+		}
+		out.println("</subDeps>");
+		return null;
+		
+	}
+	
 
 	public List<Department> getDeps() {
 		return deps;
