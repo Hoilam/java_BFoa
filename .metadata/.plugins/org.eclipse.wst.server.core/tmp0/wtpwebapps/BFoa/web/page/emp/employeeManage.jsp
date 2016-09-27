@@ -17,6 +17,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	<meta http-equiv="keywords" content="keyword1,keyword2,keyword3">
 	<meta http-equiv="description" content="This is my page">
 	<script type="text/javascript" src="web/js/jquery-1.4.2.js"></script>
+	<%@ taglib uri="http://jsptags.com/tags/navigation/pager" prefix="pg" %>
+	<%@ taglib uri="/struts-tags" prefix="s"%>
 	<script type="text/javascript">
 	   function t_test() {
 		   var pid = $('#s1').val();
@@ -112,7 +114,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   </head>
   
   <body>
-<center>
 
 <div id="emplist">
 <form action="" method="post">
@@ -128,60 +129,46 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	<td align="center"  width="50" height="25" class="th_1">操作</td>
 
   </tr>
+  <s:iterator>
   	 <tr>
-	    <td align="center" height="25">1</td>
-	    <td>emp201001</td>
-	    <td>张三</td>
-	    <td>女</td>
-		<td>教职部</td>
-		<td>班主任</td>
+	    <td align="center" height="25"><s:property value="emp_id"/></td>
+	    <td><s:property value="emp_sn"/></td>
+	    <td><s:property value="emp_name"/></td>
+	    <td><s:property value="emp_sex"/></td>
+		<td><s:property value=""/></td>
+		<td><s:property value="emp_job"/></td>
 		<td><input type="checkbox" class="style_box" /></td>
 		<td><a href="editEmployee.html">详细</a></td>
      </tr>
+  </s:iterator>
   
-  	 <tr>
-	    <td align="center" height="25">1</td>
-	    <td>emp201002</td>
-	    <td>李四</td>
-	    <td>男</td>
-		<td>教职部</td>
-		<td>教师</td>
-		<td><input type="checkbox"  class="style_box"/></td>
-		<td><a href="editEmployee.html">详细</a></td>
-     </tr>
+  	 
 	 <tr><td colspan="8" align="right"><input type="checkbox" class="style_box"/>全选/取消&nbsp;&nbsp;<input type="submit" value="删除信息"   onmouseover="buttonHover(this)" onmouseout="buttonNormal(this)" class="button" style="border:0px solid #fff;"  onclick="alert('删除成功');return false;" />&nbsp;</td></tr>
 </table>
 </form>
 	<center>
-		 
+		 <pg:pager items="${pv.totalNo }" maxPageItems="2" maxIndexPages="2" url="bfemp/emp.action">
+         <pg:first>
+            <a href="${pageUrl }">首页</a>
+         </pg:first>
          
-            <a href="#">首页</a>
+         <pg:prev>
+         	<a href="${pageUrl }">前页</a>
+         </pg:prev>
          
+         <pg:pages>
+         	<a href="${pageUrl }" class="item">${pageNumber}</a>
+         </pg:pages>
          
+         <pg:next>
+            <a href="${pageUrl }">后页</a>
+         </pg:next>
          
+         <pg:last>
+            <a href="${pageUrl }">尾页</a>
+         </pg:last>
          
-         
-            
-              <font color="red" class="item">1</font>
-            
-            
-             
-         
-         
-         
-            
-            
-            <a href="#">2</a>
-            
-             
-         
-         
-         
-            <a href="#">后页</a>
-         
-         
-            <a href="#">尾页</a>
-         
+		 </pg:pager>
       
 		</center>
 	</div>
@@ -190,13 +177,13 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	<center>
 <fieldset>
 <legend>添加员工信息</legend>
-		<form method="POST" action="" id="form1" name="form1">
+		<form method="POST" action="bfemp/emp_addEmp.action" id="form1" name="form1" enctype="multipart/form-data">
 
 		    <ul>
 				<li><label>账&nbsp;&nbsp;号：</label><input type="text" name="loginName" value="" readonly="readonly" disabled="disabled" class="input_r"></li>
 				<li lass="left"><label>密&nbsp;&nbsp;码：</label><input type="text" name="loginPwd" value="" readonly="readonly" disabled="disabled" class="input_r"></li>
-				<li><label>员工编号：</label><input type="text" name="empNo" value=""></li>
-				<li><label>员工姓名：</label><input type="text" name="empName" value=""></li>
+				<li><label>员工编号：</label><input type="text" name="emp.emp_sn" value=""></li>
+				<li><label>员工姓名：</label><input type="text" name="emp.emp_name" value=""></li>
 				<li><label>所属部门：</label>
 				    <select name="parentDep" id="s1" onchange="t_test()">
 				     <option value="请选择">--请选择--</option>
@@ -206,15 +193,16 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				    </select>
 				</li>
 				<li><label>子部门：</label>
-				 <select name="subDep" id="s2">
+				 <select name="depId" id="s2">
 				 <option value="请选择">--请选择--</option>
 				    </select>
 				</li>
-				<li><label>所任职务：</label><input type="text" name="job" value=""></li>
-				<li><label>联系电话：</label><input type="text" name="phone" value=""></li>
-				<li><label>现所在住址：</label><input type="text" name="address" value="" maxlength="120" style="width:400px;"></li>
-				 <li><label>性  别：</label><input type="text" name="sex" value=""></li>
-				<li style="width:100%;text-align:center;"><input type="submit" name="cmdSave" value="添 加"  onmouseover="buttonHover(this)" onmouseout="buttonNormal(this)" class="button" style="border:0px solid #fff;" onclick="alert('添加成功');return false;"></li>
+				<li><label>所任职务：</label><input type="text" name="emp.emp_job" value=""></li>
+				<li><label>联系电话：</label><input type="text" name="emp.emp_phone" value=""></li>
+				<li><label>现所在住址：</label><input type="text" name="emp.emp_address" value="" maxlength="120" style="width:400px;"></li>
+				 <li><label>性  别：</label><input type="text" name="emp.emp_sex" value=""></li>
+				 <li><label>员工的照片</label><input type="file" name="image"></li>				
+				<li style="width:100%;text-align:center;"><input type="submit" name="cmdSave" value="添 加"  onmouseover="buttonHover(this)" onmouseout="buttonNormal(this)" class="button" style="border:0px solid #fff;"></li>
 			</ul>
 
 				</form>

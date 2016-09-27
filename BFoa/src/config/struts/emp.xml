@@ -7,6 +7,7 @@
     <package name="bfemp" namespace="/" extends="struts-default">
         <action name="emp_*" class="empAction" method="{1}">
             <result name="index">/web/page/emp/employeeManage.jsp</result>
+        	<result name="addEmp">/web/page/common/close.html</result>
         </action>
     </package>
 </struts>

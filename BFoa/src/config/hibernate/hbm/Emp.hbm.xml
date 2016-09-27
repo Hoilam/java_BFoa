@@ -6,7 +6,7 @@
     <id name="emp_id">
       <generator class="native"/>
     </id>
-    
+	<property name="emp_sn"/>    
     <property name="emp_name"/>
     <property name="emp_sex"/>
     <property name="emp_address"/>

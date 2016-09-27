@@ -87,6 +87,7 @@ function drawTableColor(){
 
 //打开模式窗口
 function openModalWindow(path,width,height){
+	debugger;
 	if(getBrowser()=='IE:6.0'){
 		height+=20;
 	}
@@ -97,10 +98,11 @@ function openModalWindow(path,width,height){
 }
 //打开普通窗体
 function openWindow(path,width,height,title){
-	if(getBrowser().substring(0,2)=='IE'){
+	
+	/*if(getBrowser().substring(0,2)=='IE'){
 		height+=20;
 		width+=20;
-	}
+	}*/
 	
 	var x = (screen.width-width)/2;
 	var y = (screen.height-height)/2;
