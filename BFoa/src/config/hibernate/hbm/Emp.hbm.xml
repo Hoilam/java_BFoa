@@ -13,6 +13,7 @@
     <property name="emp_phone"/>
     <property name="emp_job"/>
     <property name="emp_img"/>
+    <property name="flag"/>
     <many-to-one name="dep" column="dep_id"></many-to-one>
   </class>
 </hibernate-mapping>

@@ -109,6 +109,21 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		function buttonHover(obj){
 			obj.style.backgroundImage="url('web/imgs/button_hover.jpg')";
 		}
+		function m_test() {
+			var cc = document.getElementsByName("cc");
+			var ccall = document.getElementById("ccall");
+			if (ccall.checked) {
+				for ( i = 0; i < cc.length; i++) {
+					cc[i].checked = true;
+				}
+			}else{
+				for (i = 0; i < cc.length; i++) {
+					cc[i].checked = false;
+				}
+			}
+		}
+		
+		
 	</script>
 
   </head>
@@ -116,7 +131,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   <body>
 
 <div id="emplist">
-<form action="" method="post">
+<form action="bfemp/emp_deleteEmp.action" method="post">
   <table width="550" height="30" border="1" align="center" cellpadding="0" cellspacing="0" >
   <tr>
     <td align="center"  width="40" height="25" class="th_1">序号</td>      
@@ -137,13 +152,13 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	    <td><s:property value="emp_sex"/></td>
 		<td><s:property value=""/></td>
 		<td><s:property value="emp_job"/></td>
-		<td><input type="checkbox" class="style_box" /></td>
-		<td><a href="editEmployee.html">详细</a></td>
+		<td><input type="checkbox" class="style_box" name="cc" value='<s:property value="emp_id"/>'></td>
+		<td><a href="bfemp/emp_showEmp.action">详细</a></td>
      </tr>
   </s:iterator>
   
   	 
-	 <tr><td colspan="8" align="right"><input type="checkbox" class="style_box"/>全选/取消&nbsp;&nbsp;<input type="submit" value="删除信息"   onmouseover="buttonHover(this)" onmouseout="buttonNormal(this)" class="button" style="border:0px solid #fff;"  onclick="alert('删除成功');return false;" />&nbsp;</td></tr>
+	 <tr><td colspan="8" align="right"><input type="checkbox" class="style_box" id="ccall" onclick="m_test()"/>全选/取消&nbsp;&nbsp;<input type="submit" value="删除信息"   onmouseover="buttonHover(this)" onmouseout="buttonNormal(this)" class="button" style="border:0px solid #fff;"  onclick="alert('删除成功');return false;" />&nbsp;</td></tr>
 </table>
 </form>
 	<center>

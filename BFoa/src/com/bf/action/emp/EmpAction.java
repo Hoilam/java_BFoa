@@ -2,6 +2,7 @@ package com.bf.action.emp;
 
 import java.io.File;
 import java.io.IOException;
+import java.io.Serializable;
 import java.util.List;
 
 import javax.annotation.Resource;
@@ -9,6 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.apache.commons.io.FileUtils;
 import org.apache.struts2.ServletActionContext;
+import org.jbpm.context.exe.matcher.SerializableMatcher;
 
 import com.bf.common.PageView;
 import com.bf.po.dep.Department;
@@ -49,7 +51,7 @@ public class EmpAction {
 		if(pageNo_str != null){
 			pageNo = Integer.parseInt(pageNo_str);
 		}
-		PageView<Employee> pv = efr.findByPage(Employee.class, "from Employee e", pageNo, pageSize);
+		PageView<Employee> pv = efr.findByPage(Employee.class, "from Employee e where e.flag=1", pageNo, pageSize);
 		request.setAttribute("pv", pv);
 		
 		//得到父部门的所有信息
@@ -79,11 +81,33 @@ public class EmpAction {
 				dep_id = Integer.parseInt(depId);
 			}
 			emp.setDep(dfr.findById(Department.class, dep_id));
+			emp.setFlag(1);
 			emp.setEmp_img("web/imgs/emp"+imageFileName);
 			ef.save(emp);
 		}
 		
 		return "addEmp";
+	}
+	//删除员工
+	public String deleteEmp(){
+		HttpServletRequest request = ServletActionContext.getRequest();
+		String[] strs = request.getParameterValues("cc");
+		for (String str : strs) {
+			ef.deleteByLogic(Employee.class, new Serializable[]{Integer.parseInt(str)}, "emp_id","flag");
+		}
+		return "deleteEmp";
+	}
+	//显示员工信息
+	public String showEmp(){
+		HttpServletRequest request = ServletActionContext.getRequest();
+		int empId = 0;
+		String str_id = request.getParameter("empId");
+		if (str_id != null) {
+			empId = Integer.parseInt(str_id);
+		}
+		Employee emp = efr.findById(Employee.class, empId);
+		request.setAttribute("emp", emp);
+		return "showEmp";
 	}
 
 	public File getImage() {

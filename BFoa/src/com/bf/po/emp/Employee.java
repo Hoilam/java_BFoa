@@ -15,6 +15,7 @@ public class Employee implements Serializable{
 	private String emp_job;
 	private String emp_img;
 	private Department dep;
+	private int flag;
 
 	public int getEmp_id() {
 		return emp_id;
@@ -71,6 +72,13 @@ public class Employee implements Serializable{
 	public void setDep(Department dep) {
 		this.dep = dep;
 	}
+	public int getFlag() {
+		return flag;
+	}
+	public void setFlag(int flag) {
+		this.flag = flag;
+	}
+	
 
 	
 }
