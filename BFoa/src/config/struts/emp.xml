@@ -10,6 +10,7 @@
         	<result name="addEmp">/web/page/common/close.html</result>
         	<result name="deleteEmp">/web/page/common/close.html</result>
         	<result name="showEmp">/web/page/emp/editEmp.jsp</result>
+        	<result name="findEmp">/web/page/emp/findEmp.jsp</result>
         </action>
     </package>
 </struts>

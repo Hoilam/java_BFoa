@@ -3,7 +3,7 @@
 String path = request.getContextPath();
 String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
 %>
-<%@taglib uri="/struts-tags" prefix="s"%>
+
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
   <head>
@@ -225,12 +225,26 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				<br />
 <fieldset>
 <legend>查找员工</legend>
-<form method="POST" action="" id="form1" name="form1">
-<input type="radio" class="style_box" name="radio1" /><span>按编号查询</span>&nbsp;&nbsp;<input type="radio" class="style_box" checked="checked" name="radio1" /><span>按姓名查询</span><br /><Br />
-<div style=" margin-left:70px;text-align:left"><label for="keywords" style="margin-top:12px;">查询条件：</label><input type="text" id="keywords" name="keywords" style="width:200px; height:25px;" /> <input type="submit" value="提交查询" class="button" style="border:0px solid #fff;"   onmouseover="buttonHover(this)" onmouseout="buttonNormal(this)" onClick="return false;" /><div>
+<form method="post" action="bfemp/emp_findEmp.action" id="form1" name="form1">
+<ul>
+	<li><label>职位: </label><input type="text" name="job"></li>
+	<li><label>姓名: </label><input type="text" name="name"></li>
+	<li><label>部门： </label>
+		<select name="dep" id="s1">
+			<option value="请选择">--请选择--</option>
+			<s:iterator value="#request.subDeps">
+				<option value='<s:property value="dep_id"/>'><s:property value="dep_name"/></option>
+			</s:iterator>
+		</select>
+	</li>
+	<li><label>住址：</label><input type="text" name="address"></li>
+</ul>
+
+
+<div style=" margin-left:70px;text-align:left"><input type="submit" value="提交查询" class="button" style="border:0px solid #fff;"   onmouseover="buttonHover(this)" onmouseout="buttonNormal(this)" onClick="return false;" ></div>
 </form>
 </fieldset>
-				</center>
+			</center>
 	</div>
 	</body>
 </html>

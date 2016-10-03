@@ -1,0 +1,8 @@
+0:0:0:0:0:0:0:1 - - [04/Oct/2016:00:10:32 +0800] "GET /BFoa/web/page/emp/findEmp.jsp HTTP/1.1" 200 2012
+0:0:0:0:0:0:0:1 - - [04/Oct/2016:00:15:56 +0800] "GET /BFoa/web/page/emp/findEmp.jsp HTTP/1.1" 200 2139
+0:0:0:0:0:0:0:1 - - [04/Oct/2016:00:22:05 +0800] "GET /BFoa/web/page/emp/findEmp.jsp HTTP/1.1" 200 2526
+0:0:0:0:0:0:0:1 - - [04/Oct/2016:00:22:05 +0800] "GET /BFoa/web/imgs/button_normal.jpg HTTP/1.1" 304 -
+0:0:0:0:0:0:0:1 - - [04/Oct/2016:00:22:07 +0800] "GET /BFoa/web/page/emp/findEmp.jsp HTTP/1.1" 200 2526
+0:0:0:0:0:0:0:1 - - [04/Oct/2016:00:22:07 +0800] "GET /BFoa/web/imgs/button_normal.jpg HTTP/1.1" 304 -
+0:0:0:0:0:0:0:1 - - [04/Oct/2016:00:50:16 +0800] "GET /BFoa/web/page/emp/findEmp.jsp HTTP/1.1" 200 3919
+0:0:0:0:0:0:0:1 - - [04/Oct/2016:00:50:16 +0800] "GET /BFoa/web/imgs/button_normarl.jpg HTTP/1.1" 404 1058
