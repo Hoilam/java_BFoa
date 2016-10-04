@@ -3,6 +3,7 @@ package com.bf.action.emp;
 import java.io.File;
 import java.io.IOException;
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.annotation.Resource;
@@ -56,9 +57,10 @@ public class EmpAction {
 		
 		//得到父部门的所有信息
 		List<Department> deps = dfr.findAll(Department.class, "from Department d where d.parent = null");
-		ServletActionContext.getRequest().setAttribute("deps", deps);
+		List<Department> subDeps = dfr.findAll(Department.class, "from Department d where d.parent !=null");
+		request.setAttribute("deps", deps);
+		request.setAttribute("subDeps", subDeps);
 		return "index";
-		
 	}
 
 	//添加员工信息
@@ -108,6 +110,63 @@ public class EmpAction {
 		Employee emp = efr.findById(Employee.class, empId);
 		request.setAttribute("emp", emp);
 		return "showEmp";
+	}
+	
+	//查询员工信息
+	public String findEmp(){
+		HttpServletRequest request = ServletActionContext.getRequest();
+		//放置条件的值
+		List<Object> params = new ArrayList<Object>();
+		//放置条件的key
+		StringBuffer hql = new StringBuffer();
+		
+		hql.append("e.flag=?");
+		params.add(new Integer(1));
+		String job = request.getParameter("job");
+		if(!job.equals("") && job != null){
+			if(params.size() > 0){
+				hql.append("and");
+				hql.append("e.emp_job=?");
+				params.add(job.trim());
+			}
+		}
+		String name = request.getParameter("name");
+		if(!name.equals("") && name !=null){
+			if(params.size() > 0){
+				hql.append("and");
+				hql.append("e.emp_name=?");
+				params.add(name.trim());
+			}
+		}
+		String subDepId_str = request.getParameter("dep");
+		if(!subDepId_str.equals("请选择") && subDepId_str !=null){
+			int subDepId = Integer.parseInt(subDepId_str);
+			if(params.size()>0){
+				hql.append("and");
+				hql.append("e.dep.dep_id=?");
+				params.add(new Integer(subDepId));
+			}
+		}
+		String address = request.getParameter("address");
+		if(!address.equals("") && address != null){
+			if(params.size() > 0){
+				hql.append("and");
+				hql.append("e.emp_address = ?");
+				params.add(address.trim());
+			}
+		}
+		int pageSize = 3;
+		int pageNo = 0;
+		String pageNo_str = request.getParameter("pager.offset");
+		if(pageNo_str != null){
+			pageNo = Integer.parseInt(pageNo_str);
+		}
+		PageView<Employee> pv = efr.findByPage(Employee.class, 
+				"from Employee e where" + hql.toString(),params.toArray(), pageNo, pageSize);
+		
+		request.setAttribute("pv", pv);
+		return "findEmp";
+		
 	}
 
 	public File getImage() {
