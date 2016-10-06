@@ -10,7 +10,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <head>
 <base href="<%=basePath%>">
 <title>My JSP 'findEmp.jsp'starting page</title>
-<meta http-equiv="Content-Type" content="utf-8">
+<meta http-equiv="Content-Type" content="UTF-8">
 <meta http-equiv="pragme" content="no-cahce">
 <meta http-equiv="cache-control" content="0">
 <meta http-equiv="expires" content="0">
@@ -111,6 +111,20 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		</form>	
 		<center>
 		 <pg:pager items="${pv.totalNo}" maxPageItems="2" maxIndexPages="2" url="bfemp/emp_findEmp.action">
+		 	
+		 	<s:if test="#request.job != null">
+				<pg:param name="job01" value="${job }"/>		 	
+		 	</s:if>
+		 	<s:if test="#request.name != null">
+		 		<pg:param name="name01" value="${name }"/>
+		 	</s:if>
+		 	<s:if test="#request.dep != null">
+		 		<pg:param name="dep" value="${dep }"/>
+		 	</s:if>
+		 	<s:if test="#request.address != null">
+		 		<pg:param name="address01" value="${address }"/>
+		 	</s:if>
+		 	
 		 	<pg:first>
 		 		<a href="${pageUrl }">首页</a>
 		 	</pg:first>

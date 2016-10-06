@@ -3,6 +3,7 @@ package com.bf.action.emp;
 import java.io.File;
 import java.io.IOException;
 import java.io.Serializable;
+import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -113,7 +114,7 @@ public class EmpAction {
 	}
 	
 	//查询员工信息
-	public String findEmp(){
+	public String findEmp() throws Exception{
 		HttpServletRequest request = ServletActionContext.getRequest();
 		//放置条件的值
 		List<Object> params = new ArrayList<Object>();
@@ -123,36 +124,72 @@ public class EmpAction {
 		hql.append("e.flag=?");
 		params.add(new Integer(1));
 		String job = request.getParameter("job");
-		if(!job.equals("") && job != null){
+		
+		if(job != null && !job.equals("")){
 			if(params.size() > 0){
 				hql.append("and");
 				hql.append("e.emp_job=?");
 				params.add(job.trim());
+				//把值传到页面上去
+				request.setAttribute("job", job);
 			}
 		}
+		String job01 = request.getParameter("job01");
+		if(job01 != null){
+			if(params.size() > 0){
+				//编码
+				job01 = new String(job01.getBytes("iso-8859-1"),"utf-8");
+				hql.append("and");
+				hql.append("e.emp_job = ?");
+				params.add(job01.trim());
+				//把值传到页面上去
+				request.setAttribute("job", job01);
+			}
+		}
+		
 		String name = request.getParameter("name");
-		if(!name.equals("") && name !=null){
+		if(name !=null && !name.equals("")){
 			if(params.size() > 0){
 				hql.append("and");
 				hql.append("e.emp_name=?");
 				params.add(name.trim());
+				//把值传到页面上去
+				request.setAttribute("name", name);
 			}
 		}
+		String name01 = request.getParameter("name01");
+		if(name01 != null){
+			if(params.size() > 0){
+				//编码
+				name01 = new String(name01.getBytes("iso-8859-1"),"utf-8");
+				hql.append("and");
+				hql.append("e.emp_name=?");
+				params.add(name01.trim());
+				//把值传到页面上去
+				request.setAttribute("name", name01);
+			}
+		}
+		
 		String subDepId_str = request.getParameter("dep");
-		if(!subDepId_str.equals("请选择") && subDepId_str !=null){
+		if(subDepId_str !=null && !subDepId_str.equals("请选择")){
 			int subDepId = Integer.parseInt(subDepId_str);
 			if(params.size()>0){
 				hql.append("and");
 				hql.append("e.dep.dep_id=?");
 				params.add(new Integer(subDepId));
+				//把值传到页面上去
+				request.setAttribute("dep", subDepId);
 			}
 		}
 		String address = request.getParameter("address");
-		if(!address.equals("") && address != null){
+		if(address != null && address.equals("")){
 			if(params.size() > 0){
 				hql.append("and");
 				hql.append("e.emp_address = ?");
 				params.add(address.trim());
+				//把值传到页面上去
+				request.setAttribute("address", address);
+				
 			}
 		}
 		int pageSize = 3;
