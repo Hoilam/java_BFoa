@@ -48,6 +48,7 @@
 				<value>config/hibernate/hbm/User.hbm.xml</value>
 				<value>config/hibernate/hbm/Dep.hbm.xml</value>
 				<value>config/hibernate/hbm/Emp.hbm.xml</value>
+				<value>config/hibernate/hbm/Module.hbm.xml</value>
 			</list>
 		</property>
 		
@@ -70,4 +71,5 @@
 	<bean id="userAction" class="com.bf.action.user.UserAction"></bean>
 	<bean id="depAction" class="com.bf.action.dep.DepAction"></bean>
 	<bean id="empAction" class="com.bf.action.emp.EmpAction"></bean>
+	<bean id="modAction" class="com.bf.action.mod.ModAction"></bean>
 </beans>

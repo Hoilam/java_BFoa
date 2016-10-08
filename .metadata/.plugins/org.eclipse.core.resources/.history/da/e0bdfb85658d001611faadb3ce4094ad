@@ -1,0 +1,7 @@
+package com.bf.serviceimpl.mod;
+
+import com.bf.base.AbstractFinder;
+
+public class ModServiceFinderImpl extends AbstractFinder<Module> {
+
+}

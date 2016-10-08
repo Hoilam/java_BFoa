@@ -1,0 +1,21 @@
+package com.bf.action.mod;
+
+import javax.annotation.Resource;
+
+import com.bf.service.mod.ModServiceFinder;
+
+public class ModAction {
+	
+	@Resource(name = "modServiceFinderImpl")
+	private ModServiceFinder msf;
+	
+	//·ÖÒ³ÏÔÊ¾Ä£¿é
+	public String execute(){
+		
+		
+		
+		return null;
+		
+	}
+
+}

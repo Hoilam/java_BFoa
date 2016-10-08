@@ -1,0 +1,15 @@
+package com.bf.po.module;
+
+import java.io.Serializable;
+
+/**
+ * Ä£¿é¹ÜÀí
+ *  
+ **/
+public class Module implements Serializable {
+
+	private int m_id;
+	private String m_name;
+	private String m_address;
+	
+}

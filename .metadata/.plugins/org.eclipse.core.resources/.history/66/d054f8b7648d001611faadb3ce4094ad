@@ -1,0 +1,5 @@
+package com.bf.service.mod;
+
+public interface ModServiceFinder {
+
+}

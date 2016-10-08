@@ -1,0 +1,16 @@
+package com.bf.serviceimpl.mod;
+
+import com.bf.base.AbstractFinder;
+import com.bf.common.PageView;
+import com.bf.po.module.Module;
+import com.bf.service.mod.ModServiceFinder;
+
+public class ModServiceFinderImpl extends AbstractFinder<Module> implements ModServiceFinder {
+
+	@Override
+	public PageView<Module> findPageByFlag(int mid, int pageNo, int pageSize) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+}

@@ -1,0 +1,25 @@
+package com.bf.po.module;
+5
+import java.io.Serializable;
+
+/**
+ * 模块管理
+ *  
+ **/
+public class Module implements Serializable {
+
+	private int m_id;
+	private String m_name;
+	private String m_address;
+	//鼠标移上去显示的图片
+	private String m_path_c;
+	//鼠标离开显示的图片
+	private String m_sn;
+	//是否显示
+	private int flag;
+	//父模块
+	private Module parent;
+	//子模块
+	private Set<Module> children;
+	
+}
