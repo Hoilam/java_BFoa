@@ -7848,3 +7848,12 @@ java.lang.NullPointerException
 
 !ENTRY com.android.ide.eclipse.adt 2 0 2016-10-08 23:05:42.606
 !MESSAGE No projects found for [D:\java_BFoa\BFoa\src\config\struts\mod.xml]
+
+!ENTRY com.android.ide.eclipse.adt 2 0 2016-10-08 23:59:54.169
+!MESSAGE No projects found for [D:\java_BFoa\BFoa\src\config\hibernate\hbm\Module.hbm.xml]
+
+!ENTRY com.android.ide.eclipse.adt 2 0 2016-10-09 00:00:41.244
+!MESSAGE No projects found for [D:\java_BFoa\BFoa\src\config\hibernate\hbm\Module.hbm.xml]
+
+!ENTRY com.android.ide.eclipse.adt 2 0 2016-10-09 00:01:16.528
+!MESSAGE No projects found for [D:\java_BFoa\BFoa\src\config\hibernate\hbm\Module.hbm.xml]

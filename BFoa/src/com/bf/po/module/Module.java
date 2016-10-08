@@ -15,6 +15,8 @@ public class Module implements Serializable {
 	//鼠标移上去显示的图片
 	private String m_path_c;
 	//鼠标离开显示的图片
+	private String m_path_n;
+	//模块编号
 	private String m_sn;
 	//是否显示
 	private int flag;
@@ -24,6 +26,12 @@ public class Module implements Serializable {
 	private Set<Module> children;
 	
 	
+	public String getM_path_n() {
+		return m_path_n;
+	}
+	public void setM_path_n(String m_path_n) {
+		this.m_path_n = m_path_n;
+	}
 	public int getM_id() {
 		return m_id;
 	}
