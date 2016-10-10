@@ -52,9 +52,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					<div class="iconButton" style="position:absolute;left:80px; top:100px">
 					 <div class="iconImage" 
 						 style="background-image:url(web/imgs/icos/mkgl.jpg);" 
-						 onclick="openModalWindow('../purview/module/module.html',615,420)">
+						 onclick="openModalWindow('bfmod/mod.action',615,420,'mod')">
 					 </div>
-					 <div style="text-align:center; line-height:20px" onclick="openModalWindow('../purview/module/module.html',615,420)">模块管理</div>
+					 <div style="text-align:center; line-height:20px" onclick="openModalWindow('bfmod/mod.action',615,420,'mod')">模块管理</div>
 					</div>
 					
 					<!-- 账号管理 -->

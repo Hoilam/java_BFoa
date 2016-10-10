@@ -20,5 +20,6 @@
 <include file="config/struts/user.xml"></include>
 <include file="config/struts/dep.xml"></include>
 <include file="config/struts/emp.xml"></include>
+<include file="config/struts/mod.xml"></include>
 </struts>
 
