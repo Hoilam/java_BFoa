@@ -59,25 +59,8 @@ public class ModAction {
 		HttpServletRequest request = ServletActionContext.getRequest();
 		List<Module> mods = msf.findAll(Module.class, "from Module m where m.parent =null");
 		request.setAttribute("mods", mods);
-
+		
 		return "openAddMod";
-		
-	}
-	//Ìí¼ÓÄ£¿é
-	public String addMod(){
-	
-		if(imgC!=null && imgN!=null){
-			String realPath = ServletActionContext.getServletContext().getRealPath("/web/imgs/bar");
-			File saveFileC = new File(new File(realPath),imgCFileName);
-			File saveFileN = new File(new File(realPath),imgNFileName);
-			if(!saveFileC.getParentFile().exists() && !saveFileN.getParentFile().exists()){
-				
-			}
-			
-			
-		}
-		
-		return "addMod";
 		
 	}
 	

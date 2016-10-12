@@ -1,7 +1,6 @@
 INDEX VERSION 1.3+D:\java_BFoa\.metadata\.plugins\org.eclipse.wst.jsdt.core\indexes
 2786824885.index
 2950240911.index
-4279223936.index
 1965026989.index
 29271615.index
 2516730699.index

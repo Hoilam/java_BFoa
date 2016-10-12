@@ -5,7 +5,7 @@
 <struts>
     <package name="bfmod" namespace="/" extends="struts-default">
         <action name="mod_*" class="modAction" method="{1}">
-            <result name="index">/web/page/mod/showMod.jsp</result>
+            <result name="index"></result>
         </action>
     </package>
 </struts>

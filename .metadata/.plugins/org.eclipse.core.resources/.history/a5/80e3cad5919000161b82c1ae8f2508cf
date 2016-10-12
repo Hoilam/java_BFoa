@@ -70,11 +70,6 @@ public class ModAction {
 			String realPath = ServletActionContext.getServletContext().getRealPath("/web/imgs/bar");
 			File saveFileC = new File(new File(realPath),imgCFileName);
 			File saveFileN = new File(new File(realPath),imgNFileName);
-			if(!saveFileC.getParentFile().exists() && !saveFileN.getParentFile().exists()){
-				
-			}
-			
-			
 		}
 		
 		return "addMod";
