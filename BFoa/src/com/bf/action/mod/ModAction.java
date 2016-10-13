@@ -1,11 +1,13 @@
 package com.bf.action.mod;
 
 import java.io.File;
+import java.io.IOException;
 import java.util.List;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 
+import org.apache.commons.io.FileUtils;
 import org.apache.struts2.ServletActionContext;
 
 import com.bf.common.PageView;
@@ -64,19 +66,26 @@ public class ModAction {
 		
 	}
 	//Ìí¼ÓÄ£¿é
-	public String addMod(){
+	public String addMod() throws Exception{
 	
 		if(imgC!=null && imgN!=null){
 			String realPath = ServletActionContext.getServletContext().getRealPath("/web/imgs/bar");
 			File saveFileC = new File(new File(realPath),imgCFileName);
 			File saveFileN = new File(new File(realPath),imgNFileName);
 			if(!saveFileC.getParentFile().exists() && !saveFileN.getParentFile().exists()){
-				
+				 	saveFileC.getParentFile().mkdirs();
+				 	saveFileN.getParentFile().mkdirs();
 			}
-			
-			
+			FileUtils.copyFile(imgC, saveFileC);
+			FileUtils.copyFile(imgC, saveFileN);
 		}
-		
+		if(mod.getM_id()!=0){
+			mod.setParent(msf.findById(Module.class, mod.getM_id()));
+		}
+		mod.setM_path_c("/web/imgs/bar"+imgCFileName);
+		mod.setM_path_n("/web/imgs/bar"+imgNFileName);
+		mod.setFlag(1);
+		mds.save(mod);
 		return "addMod";
 		
 	}
