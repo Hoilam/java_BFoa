@@ -108,8 +108,8 @@ public class ModAction {
 			mid = Integer.parseInt(mid_str);
 		}
 		List<Module> subMods = msf.findAll(Module.class, "from Module m where m.parent.m_id="+mid);
-		System.out.println(subMods.size());
-		request.setAttribute("subMods", subMods);
+		
+		
 		return "findSubMod";
 	}
 	

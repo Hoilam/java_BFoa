@@ -92,25 +92,8 @@ public class ModAction {
 		
 	//显示父级模块
 	public String findParentMod(){
-		HttpServletRequest request = ServletActionContext.getRequest();
-		List<Module> parentModules = msf.findAll(Module.class, "from Module m where m.parent = null");
-		request.setAttribute("parentMods", parentModules);
 		return "findParentMod";
 		
-	}
-	
-	//根据父级模块ID找到对应的子模块
-	public String findSubMod(){
-		HttpServletRequest request = ServletActionContext.getRequest();
-		int mid = 0;
-		String mid_str = request.getParameter("mid");
-		if(mid_str!=null){
-			mid = Integer.parseInt(mid_str);
-		}
-		List<Module> subMods = msf.findAll(Module.class, "from Module m where m.parent.m_id="+mid);
-		System.out.println(subMods.size());
-		request.setAttribute("subMods", subMods);
-		return "findSubMod";
 	}
 	
 
